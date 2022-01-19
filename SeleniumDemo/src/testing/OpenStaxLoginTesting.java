@@ -17,7 +17,7 @@ public class OpenStaxLoginTesting {
 			System.setProperty("webdriver.chrome.driver", "C:\\Users\\meich\\chromedriver_win32\\chromedriver.exe");
 			ChromeDriver driver = new ChromeDriver();
 			
-			//open webpage and fill out fields
+			//open web page and fill out fields and submit
 			driver.get("https://openstax.org/accounts/i/login");
 			driver.manage().window().maximize();
 			driver.findElement(By.id("login_form_email")).sendKeys("invalid@gmail.com");
@@ -26,14 +26,16 @@ public class OpenStaxLoginTesting {
 			
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			
+			
+			
+			// find the actual error message and check it against expected error message 
 			WebElement m = driver.findElement(By.className("invalid-message"));
-			
-			
 		 	String actual = m.getText();
 		 	System.out.println(actual);
 		 	String expected = "We could not find your account. Please try again.";
 		 	if(actual.equalsIgnoreCase(expected) ) System.out.println("error message sucessfully displayed");
 		 	
+		 	// quit driver and chrome
 		 	driver.quit();
 		 	
 		 	return actual;
@@ -44,7 +46,7 @@ public class OpenStaxLoginTesting {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\meich\\chromedriver_win32\\chromedriver.exe");
 		ChromeDriver driver = new ChromeDriver();
 		
-		//open webpage and fill out fields
+		//open web page and fill out fields and submit
 		driver.get("https://openstax.org/accounts/i/login");
 		driver.manage().window().maximize();
 		driver.findElement(By.id("login_form_email")).sendKeys("chixelpuf@gmail.com");
@@ -53,14 +55,14 @@ public class OpenStaxLoginTesting {
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
+		// find the actual error message and check it against expected error message 
 		WebElement m = driver.findElement(By.className("invalid-message"));
-		
-		
 	 	String actual = m.getText();
 	 	System.out.println(actual);
 	 	String expected = "The password you provided is incorrect.";
 	 	if(actual.equalsIgnoreCase(expected) ) System.out.println("error message sucessfully displayed");
-	 	
+
+	 	// quit driver and chrome
 	 	driver.quit();
 	 	
 	 	return actual;
